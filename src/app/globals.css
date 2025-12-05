@@ -1,23 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Inter", sans-serif;
-  --font-heading: "Sora", sans-serif;
+  --font-sans: "Inter";
+  --font-heading: "Sora";
+  --font-caveat: "Caveat";
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Sora";
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Sora", sans-serif;
+  font-family: "Sora";
   font-weight: 600;
 }
 

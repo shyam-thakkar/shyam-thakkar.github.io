@@ -46,7 +46,7 @@ export function SocialLinks({ links, className = "" }: SocialLinksProps) {
   };
 
   return (
-    <div className={`flex items-center gap-4 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {links.map((link) => {
         const Icon = getIcon(link.icon);
         return (
@@ -58,7 +58,7 @@ export function SocialLinks({ links, className = "" }: SocialLinksProps) {
             className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
             aria-label={link.ariaLabel}
           >
-            <Icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+            <Icon className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
           </a>
         );
       })}
