@@ -84,11 +84,11 @@ export const ProjectCard = memo(function ProjectCard({ project, onClick }: Proje
                     </p>
 
                     {project.techStack && project.techStack.length > 0 ? (
-                        <div className="mb-4 h-16">
+                        <div className="mb-4 min-h-16">
                             <TechStack items={project.techStack.slice(0, 6)} maxCols={8} />
                         </div>
                     ) : (
-                        <div className="mb-4 h-16" />
+                        <div className="mb-4 min-h-16" />
                     )}
 
                     <div className="flex gap-3 mt-auto">
