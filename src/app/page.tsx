@@ -198,26 +198,26 @@ return (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <ProjectCard
                 project={{
-                  title: "Karate Kata Evaluation System",
-                  description: "A real-time AI system for karate pose detection and analysis using MoveNet and custom deep neural networks for instant feedback.",
-                  image: "/project-karate.png",
-                  tags: ["Python", "Keras", "OpenCV", "TensorFlow"],
+                  title: projectDetails["karate-kata"].title,
+                  description: projectDetails["karate-kata"].description,
+                  image: projectDetails["karate-kata"].image,
+                  tags: projectDetails["karate-kata"].tags,
                   techStack: projectDetails["karate-kata"].techStack,
-                  liveUrl: "https://example.com",
-                  githubUrl: "https://github.com",
+                  liveUrl: projectDetails["karate-kata"].liveUrl,
+                  githubUrl: projectDetails["karate-kata"].githubUrl,
                   variant: "card"
                 }}
                 onClick={() => openProjectDetail("karate-kata")}
               />
               <ProjectCard
                 project={{
-                  title: "Stock Price Prediction System",
-                  description: "Real-time stock price prediction web app using LSTM models for accurate 7-day forecasts.",
-                  image: "/project-stock.png",
-                  tags: ["Python", "Streamlit", "TensorFlow", "Keras"],
+                  title: projectDetails["stock-prediction"].title,
+                  description: projectDetails["stock-prediction"].description,
+                  image: projectDetails["stock-prediction"].image,
+                  tags: projectDetails["stock-prediction"].tags,
                   techStack: projectDetails["stock-prediction"].techStack,
-                  liveUrl: "https://example.com",
-                  githubUrl: "https://github.com",
+                  liveUrl: projectDetails["stock-prediction"].liveUrl,
+                  githubUrl: projectDetails["stock-prediction"].githubUrl,
                   variant: "card"
                 }}
                 onClick={() => openProjectDetail("stock-prediction")}

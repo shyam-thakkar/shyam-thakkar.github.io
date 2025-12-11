@@ -14,8 +14,8 @@ export const PROJECT_DETAILS: Record<string, ProjectDetailData> = {
             { name: "Streamlit", logo: "https://cdn.simpleicons.org/streamlit", url: "https://streamlit.io/" },
             { name: "Keras", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg", url: "https://keras.io/" },
         ],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com",
+        liveUrl: "http://karatekataevaluation.streamlit.app/",
+        githubUrl: "https://github.com/shyam-thakkar/karate_kata_evaluation",
         date: "2024",
         team: "Solo Project",
         features: [
@@ -45,8 +45,6 @@ export const PROJECT_DETAILS: Record<string, ProjectDetailData> = {
             { name: "Pandas", logo: "https://cdn.simpleicons.org/pandas", url: "https://pandas.pydata.org/" },
             { name: "NumPy", logo: "https://cdn.simpleicons.org/numpy", url: "https://numpy.org/" },
         ],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com",
         date: "2024",
         team: "Solo Project",
         features: [
