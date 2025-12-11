@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
+import { Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+});
 
 export const metadata: Metadata = {
   title: "Shyam Thakkar | GenAI Developer",
@@ -22,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className="font-sans antialiased transition-colors duration-300"
+        className={`${sora.variable} font-sans antialiased transition-colors duration-300`}
       >
         <ThemeProvider
           attribute="class"

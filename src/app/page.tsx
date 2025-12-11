@@ -12,6 +12,7 @@ import { ProjectCard } from "@/components/project-card";
 import { ProjectDetail, ProjectDetailData } from "@/components/project-detail";
 import { Experience } from "@/components/experience";
 import { PROJECT_DETAILS } from "@/constants/project-data";
+import { TypingAnimation } from "@/components/typing-animation";
 
 
 export default function Home() {
@@ -106,7 +107,7 @@ return (
                   Hey! I'm Shyam Thakkar
                 </p>
                 <p className="text-4xl font-bold text-zinc-400 dark:text-zinc-400 font-caveat">
-                  - A GenAI Developer
+                  - <TypingAnimation text="A GenAI Developer" speed={100} delay={500} />
                 </p>
               </div>
               {/* Description */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, ReactNode } from "react";
+import { memo } from "react";
 import { Sparkles, Briefcase, Code } from "lucide-react";
 
 interface StatsCardProps {
@@ -25,7 +25,7 @@ export const StatsCard = memo(function StatsCard({ onClick }: StatsCardProps) {
     return (
         <div
             onClick={onClick}
-            className="w-full max-w-md bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+            className="w-full max-w-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && onClick()}
