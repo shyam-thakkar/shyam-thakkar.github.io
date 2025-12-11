@@ -106,7 +106,7 @@ return (
                 <p className="text-3xl font-bold text-black dark:text-white">
                   Hey! I'm Shyam Thakkar
                 </p>
-                <p className="text-4xl font-bold text-zinc-400 dark:text-zinc-400 font-caveat">
+                <p className="text-3xl font text-zinc-400 dark:text-zinc-400 font-heading">
                   - <TypingAnimation text="A GenAI Developer" speed={100} delay={500} />
                 </p>
               </div>
