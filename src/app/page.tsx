@@ -11,8 +11,13 @@ import { TechStack } from "@/components/tech-stack";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectDetail, ProjectDetailData } from "@/components/project-detail";
 import { Experience } from "@/components/experience";
-import { PROJECT_DETAILS } from "@/constants/project-data";
 import { TypingAnimation } from "@/components/typing-animation";
+import { PROJECT_DETAILS } from "@/constants/project-data";
+import { PERSONAL_INFO } from "@/constants/personal-info";
+import { TECH_STACK_ITEMS } from "@/constants/tech-stack-data";
+import { SOCIAL_LINKS } from "@/constants/social-links";
+import { DESCRIPTION_TECH_BADGES } from "@/constants/tech-badges";
+import { EDUCATION_DATA } from "@/constants/education-data";
 
 
 export default function Home() {
@@ -50,7 +55,7 @@ return (
           >
             <div className="w-12 h-12 rounded-lg overflow-hidden bg-zinc-200 dark:bg-zinc-800 border-2 border-zinc-300 dark:border-zinc-700 shadow-sm">
               <Image
-                src="/profile.png"
+                src={PERSONAL_INFO.profileImage}
                 alt="Profile"
                 width={800}
                 height={800}
@@ -60,10 +65,10 @@ return (
             </div>
             <div>
               <h2 className="text-lg font-bold text-black dark:text-white leading-tight">
-                SHYAM THAKKAR
+                {PERSONAL_INFO.name}
               </h2>
               <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium">
-                Gen AI Developer
+                {PERSONAL_INFO.title}
               </p>
             </div>
           </div>
@@ -85,7 +90,7 @@ return (
               <div className="flex-shrink-0">
                 <div className="w-32 h-32 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border-2 border-zinc-300 dark:border-zinc-700 shadow-md">
                   <Image
-                    src="/profile.png"
+                    src={PERSONAL_INFO.profileImage}
                     alt="Profile"
                     width={800}
                     height={800}
@@ -104,55 +109,31 @@ return (
               {/* Greeting - Larger and Brighter */}
               <div className="flex flex-wrap items-baseline gap-2 mb-4">
                 <p className="text-3xl font-bold text-black dark:text-white">
-                  Hey! I'm Shyam Thakkar
+                  {PERSONAL_INFO.greeting}
                 </p>
                 <p className="text-3xl font text-zinc-400 dark:text-zinc-400 font-heading">
-                  - <TypingAnimation text="A GenAI Developer" speed={100} delay={500} />
+                  - <TypingAnimation text={PERSONAL_INFO.typingText} speed={100} delay={500} />
                 </p>
               </div>
               {/* Description */}
               <div className="text-lg leading-loose text-zinc-600 dark:text-zinc-400 mb-6">
-                I have been specializing in building intelligent, production-grade applications using
-                <TechBadge
-                  name="Python"
-                  href="https://www.python.org/"
-                  imageSrc="/python-svgrepo-com.svg"
-                />
+                {PERSONAL_INFO.description}
+                <TechBadge {...DESCRIPTION_TECH_BADGES[0]} />
                 with
-                <TechBadge
-                  name="Django"
-                  href="https://www.djangoproject.com/"
-                  imageSrc="/django-icon-svgrepo-com.svg"
-                />
+                <TechBadge {...DESCRIPTION_TECH_BADGES[1]} />
                 and
-                <TechBadge
-                  name="FastAPI"
-                  href="https://fastapi.tiangolo.com/"
-                  imageSrc="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
-                />
-                for backend. I have been specializing in building Gen AI apps with
-                <TechBadge
-                  name="LangChain"
-                  href="https://www.langchain.com/"
-                  imageSrc="https://avatars.githubusercontent.com/u/126733545?s=200&v=4"
-                />
+                <TechBadge {...DESCRIPTION_TECH_BADGES[2]} />
+                {PERSONAL_INFO.descriptionContinued}
+                <TechBadge {...DESCRIPTION_TECH_BADGES[3]} />
                 and
-                <TechBadge
-                  name="LangGraph"
-                  href="https://langchain-ai.github.io/langgraph/"
-                  imageSrc="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/langgraph.png"
-                />
-                , creating intelligent solutions powered by AI.
+                <TechBadge {...DESCRIPTION_TECH_BADGES[4]} />
+                {PERSONAL_INFO.descriptionEnd}
               </div>
 
               {/* Social Media Links */}
               <SocialLinks
                 className="mt-6"
-                links={[
-                  { name: "Email", href: "mailto:work.shyamthakkar@gmail.com", icon: "mail", ariaLabel: "Email" },
-                  { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin", ariaLabel: "LinkedIn" },
-                  { name: "GitHub", href: "https://github.com", icon: "github", ariaLabel: "GitHub" },
-                ]}
+                links={SOCIAL_LINKS}
               />
             </div>
           </section>
@@ -162,27 +143,7 @@ return (
             <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
               Tech Stack
             </h2>
-            <TechStack
-              items={[
-                { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-                { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-                { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus", url: "https://cplusplus.com/" },
-                { name: "Java", logo: "/icons8-java-240.svg", url: "https://www.java.com/" },
-                { name: "Django", logo: "/svg_378410.svg", url: "https://www.djangoproject.com/", invertDark: true },
-                { name: "LangChain", logo: "https://cdn.simpleicons.org/langchain", url: "https://www.langchain.com/", invertDark: true },
-                { name: "TensorFlow", logo: "https://cdn.simpleicons.org/tensorflow", url: "https://www.tensorflow.org/" },
-                { name: "Keras", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg", url: "https://keras.io/" },
-                { name: "PyTorch", logo: "https://cdn.simpleicons.org/pytorch", url: "https://pytorch.org/" },
-                { name: "OpenCV", logo: "https://cdn.simpleicons.org/opencv", url: "https://opencv.org/" },
-                { name: "Streamlit", logo: "https://cdn.simpleicons.org/streamlit", url: "https://streamlit.io/" },
-                { name: "Selenium", logo: "https://cdn.simpleicons.org/selenium", url: "https://www.selenium.dev/" },
-                { name: "Playwright", logo: "/playwright-seeklogo.svg", url: "https://playwright.dev/" },
-                { name: "Git", logo: "https://cdn.simpleicons.org/git", url: "https://git-scm.com/" },
-                { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
-                { name: "FastAPI", logo: "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png", url: "https://fastapi.tiangolo.com/" },
-                { name: "LangGraph", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/langgraph.png", url: "https://langchain-ai.github.io/langgraph/", invertDark: true },
-              ]}
-            />
+            <TechStack items={TECH_STACK_ITEMS} />
           </section>
 
           {/* Projects Section */}
@@ -234,23 +195,23 @@ return (
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                    G H Patel College of Engineering and Technology (GCET)
+                    {EDUCATION_DATA.institution}
                   </h3>
                   <p className="text-zinc-600 dark:text-zinc-400">
-                    Bachelor’s degree in Computer Engineering
+                    {EDUCATION_DATA.degree}
                   </p>
                 </div>
                 <div className="text-right mt-2 md:mt-0">
                   <span className="block text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                    CGPA: 8.73
+                    CGPA: {EDUCATION_DATA.cgpa}
                   </span>
                   <span className="block text-sm text-zinc-500 dark:text-zinc-500">
-                    2021-2025
+                    {EDUCATION_DATA.duration}
                   </span>
                 </div>
               </div>
               <div className="text-zinc-600 dark:text-zinc-400 text-sm">
-                Anand, India
+                {EDUCATION_DATA.location}
               </div>
             </div>
           </section>
