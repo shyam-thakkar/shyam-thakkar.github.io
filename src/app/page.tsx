@@ -8,6 +8,7 @@ import { SocialLinks } from "@/components/social-links";
 import { TechStack, TechItem } from "@/components/tech-stack";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectDetail, ProjectDetailData } from "@/components/project-detail";
+import { Experience } from "@/components/experience";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -17,159 +18,66 @@ export default function Home() {
 
   // Detailed project data
   const projectDetails: Record<string, ProjectDetailData> = {
-    "doc-analysis": {
-      title: "AI-Powered Document Analysis System",
-      description: "A production-grade GenAI application that analyzes complex documents using LangChain and GPT-4.",
-      longDescription: "This comprehensive document analysis system leverages advanced AI techniques to process, understand, and extract insights from complex documents. Built with production-grade architecture, it handles multiple document formats and provides intelligent search capabilities through RAG (Retrieval Augmented Generation) implementation.",
-      image: "/project-document-analysis.png",
-      tags: ["LangChain", "OpenAI", "FastAPI", "PostgreSQL", "Docker"],
+    "karate-kata": {
+      title: "Karate Kata Evaluation System",
+      description: "A real-time AI system for karate pose detection and analysis using MoveNet and custom deep neural networks.",
+      longDescription: "Designed and developed a Karate Kata Evaluation System using Google MoveNet and a custom deep neural network for real-time pose detection and analysis. Integrated TensorFlow, OpenCV, Scikit-Learn, and Keras for posture assessment and movement analysis. Built and hosted a user-friendly Streamlit interface for real-time feedback and performance evaluation.",
+      image: "/project-karate.png",
+      tags: ["Python", "Keras", "OpenCV", "TensorFlow", "Streamlit"],
       techStack: [
         { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-        { name: "LangChain", logo: "https://cdn.simpleicons.org/langchain", url: "https://www.langchain.com/" },
-        { name: "OpenAI", logo: "/openai-2.svg", url: "https://openai.com/", invertDark: true },
-        { name: "FastAPI", logo: "https://cdn.simpleicons.org/fastapi", url: "https://fastapi.tiangolo.com/" },
-        { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
-        { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
+        { name: "TensorFlow", logo: "https://cdn.simpleicons.org/tensorflow", url: "https://www.tensorflow.org/" },
+        { name: "OpenCV", logo: "https://cdn.simpleicons.org/opencv", url: "https://opencv.org/" },
+        { name: "Streamlit", logo: "https://cdn.simpleicons.org/streamlit", url: "https://streamlit.io/" },
+        { name: "Keras", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg", url: "https://keras.io/" },
       ],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com",
-      date: "December 2024",
+      date: "2024",
       team: "Solo Project",
       features: [
-        "Intelligent document chunking with semantic understanding",
-        "Multi-document reasoning and cross-referencing capabilities",
-        "Vector-based semantic search with hybrid ranking",
-        "Real-time document processing and analysis",
-        "RESTful API with comprehensive documentation"
+        "Real-time pose detection using Google MoveNet",
+        "Deep neural network for posture assessment",
+        "Instant user feedback via Streamlit interface",
+        "Comprehensive movement analysis",
+        "High accuracy (87%+) in kata evaluation"
       ],
       challenges: [
-        "Optimizing chunk sizes for different document types while maintaining context",
-        "Implementing efficient caching strategies to reduce API costs",
-        "Handling large documents without exceeding token limits",
-        "Building a scalable vector database architecture"
+        "Optimizing real-time pose estimation for web browsers",
+        "Reducing latency in model inference",
+        "Designing an intuitive UI for athletic feedback",
+        "Handling varying lighting conditions in video feed"
       ]
     },
-    "multiagent": {
-      title: "LangGraph Multi-Agent System",
-      description: "A sophisticated multi-agent system using LangGraph for automated customer support.",
-      longDescription: "This advanced multi-agent system demonstrates the power of LangGraph for building complex AI workflows. It implements state management, conditional routing, and human-in-the-loop patterns to create an intelligent customer support system that can handle diverse queries efficiently.",
-      image: "/project-multiagent.png",
-      tags: ["LangGraph", "Python", "Redis", "React"],
+    "stock-prediction": {
+      title: "Stock Price Prediction System",
+      description: "Real-time stock price prediction web app using LSTM models for accurate 7-day forecasts.",
+      longDescription: "Developed a real-time stock price prediction web application using Streamlit and LSTM models for accurate 7-day forecasts, integrating real-time data sources. Implemented data preprocessing and visualization with Pandas and NumPy to enhance user experience.",
+      image: "/project-stock.png",
+      tags: ["Python", "Streamlit", "Pandas", "NumPy", "TensorFlow", "Keras"],
       techStack: [
         { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-        { name: "LangGraph", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/langgraph.png", url: "https://www.langchain.com/langgraph", invertDark: true },
-        { name: "Redis", logo: "https://cdn.simpleicons.org/redis", url: "https://redis.io/" },
-        { name: "React", logo: "https://cdn.simpleicons.org/react", url: "https://react.dev/" },
+        { name: "TensorFlow", logo: "https://cdn.simpleicons.org/tensorflow", url: "https://www.tensorflow.org/" },
+        { name: "Streamlit", logo: "https://cdn.simpleicons.org/streamlit", url: "https://streamlit.io/" },
+        { name: "Pandas", logo: "https://cdn.simpleicons.org/pandas", url: "https://pandas.pydata.org/" },
+        { name: "NumPy", logo: "https://cdn.simpleicons.org/numpy", url: "https://numpy.org/" },
       ],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com",
-      date: "November 2024",
-      team: "Team of 2",
-      features: [
-        "Multiple specialized agents working collaboratively",
-        "State persistence and recovery mechanisms",
-        "Conditional routing based on query complexity",
-        "Human-in-the-loop approval workflows",
-        "Real-time agent communication and coordination"
-      ],
-      challenges: [
-        "Designing efficient state management across multiple agents",
-        "Implementing reliable handoff mechanisms between agents",
-        "Optimizing agent selection and routing logic",
-        "Ensuring consistent behavior across different execution paths"
-      ]
-    },
-    "chat-platform": {
-      title: "Real-time AI Chat Platform",
-      description: "A scalable chat platform with streaming responses and context-aware AI assistants.",
-      longDescription: "This real-time chat platform provides a seamless conversational experience with AI assistants. Built with WebSocket technology for instant message delivery, it features streaming responses, conversation memory, and support for multiple LLM providers with automatic fallback mechanisms for high availability.",
-      image: "/project-chat.png",
-      tags: ["Next.js", "Django", "WebSocket", "Pinecone"],
-      techStack: [
-        { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs", url: "https://nextjs.org/", invertDark: true },
-        { name: "React", logo: "https://cdn.simpleicons.org/react", url: "https://react.dev/" },
-        { name: "Django", logo: "/svg_378410.svg", url: "https://www.djangoproject.com/", invertDark: true },
-        { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
-        { name: "Redis", logo: "https://cdn.simpleicons.org/redis", url: "https://redis.io/" },
-      ],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      date: "October 2024",
-      team: "Team of 3",
-      features: [
-        "Real-time message streaming with WebSocket connections",
-        "Conversation history and context management",
-        "Multi-provider LLM support with automatic failover",
-        "User authentication and session management",
-        "Responsive UI with mobile support"
-      ],
-      challenges: [
-        "Managing WebSocket connections at scale",
-        "Implementing efficient conversation context windowing",
-        "Handling LLM provider rate limits and errors gracefully",
-        "Optimizing database queries for chat history retrieval"
-      ]
-    },
-    "code-review": {
-      title: "Intelligent Code Review Assistant",
-      description: "An AI-powered tool that reviews pull requests and identifies potential bugs.",
-      longDescription: "This intelligent code review assistant automates the code review process by analyzing pull requests, suggesting improvements, and identifying potential bugs using fine-tuned language models and static analysis. It integrates seamlessly with GitHub workflows to provide instant feedback on code quality.",
-      image: "/project-code-review.png",
-      tags: ["OpenAI", "GitHub API", "FastAPI", "PostgreSQL"],
-      techStack: [
-        { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-        { name: "OpenAI", logo: "/openai-2.svg", url: "https://openai.com/", invertDark: true },
-        { name: "FastAPI", logo: "https://cdn.simpleicons.org/fastapi", url: "https://fastapi.tiangolo.com/" },
-        { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
-        { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
-      ],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      date: "September 2024",
+      date: "2024",
       team: "Solo Project",
       features: [
-        "Automated pull request analysis and review",
-        "Code quality scoring and metrics",
-        "Security vulnerability detection",
-        "Best practice recommendations",
-        "GitHub webhook integration for automatic reviews"
+        "Accurate 7-day stock price forecasts",
+        "Real-time data integration",
+        "LSTM model with sliding window algorithm",
+        "Interactive data visualization",
+        "User-friendly financial dashboard"
       ],
       challenges: [
-        "Training models to understand project-specific coding standards",
-        "Reducing false positives in bug detection",
-        "Processing large pull requests efficiently",
-        "Integrating with various GitHub workflows"
-      ]
-    },
-    "search-engine": {
-      title: "Semantic Search Engine for Documentation",
-      description: "A vector-based search system with hybrid search for technical documentation.",
-      longDescription: "This semantic search engine revolutionizes how users find information in technical documentation. By combining traditional keyword search with advanced vector-based semantic matching, it delivers highly accurate results even when users don't know the exact terminology. Built for scale and speed.",
-      image: "/project-search.png",
-      tags: ["Hugging Face", "FAISS", "Django", "Elasticsearch"],
-      techStack: [
-        { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-        { name: "Hugging Face", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/huggingface-color.png", url: "https://huggingface.co/" },
-        { name: "Django", logo: "/svg_378410.svg", url: "https://www.djangoproject.com/", invertDark: true },
-        { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
-        { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
-      ],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      date: "August 2024",
-      team: "Team of 2",
-      features: [
-        "Hybrid search combining keyword and semantic matching",
-        "Real-time indexing of documentation updates",
-        "Relevance scoring with custom ranking algorithms",
-        "Multi-language support for documentation",
-        "Search analytics and query optimization"
-      ],
-      challenges: [
-        "Balancing semantic and keyword search weights",
-        "Optimizing vector similarity search performance",
-        "Handling documentation updates without downtime",
-        "Managing large embedding databases efficiently"
+        "Preventing overfitting in LSTM models",
+        "Handling missing or noisy stock data",
+        "Optimizing visualization performance for large datasets",
+        "Ensuring low latency for real-time updates"
       ]
     }
   };
@@ -223,7 +131,7 @@ export default function Home() {
         {view === 'main' ? (
           <>
             {/* Hero Section */}
-            <section className="py-6">
+            <section className="py-2">
               <div className="flex gap-8 items-center ">
                 {/* Left: Profile Photo */}
                 <div className="flex-shrink-0">
@@ -293,46 +201,48 @@ export default function Home() {
                 <SocialLinks
                   className="mt-6"
                   links={[
-                    { name: "Instagram", href: "https://instagram.com/lowkey.shazz", icon: "instagram", ariaLabel: "Instagram" },
-                    { name: "Twitter", href: "https://twitter.com/yourhandle", icon: "twitter", ariaLabel: "Twitter" },
-                    { name: "Pinterest", href: "https://pinterest.com/yourhandle", icon: "pinterest", ariaLabel: "Pinterest" },
-                    { name: "Facebook", href: "https://facebook.com/yourhandle", icon: "facebook", ariaLabel: "Facebook" },
                     { name: "Email", href: "mailto:work.shyamthakkar@gmail.com", icon: "mail", ariaLabel: "Email" },
-                    { name: "GitHub", href: "https://github.com/yourusername", icon: "github", ariaLabel: "GitHub" },
+                    { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin", ariaLabel: "LinkedIn" },
+                    { name: "GitHub", href: "https://github.com", icon: "github", ariaLabel: "GitHub" },
                   ]}
                 />
               </div>
             </section>
 
             {/* Tech Stack Section */}
-            <section className="py-8">
+            <section className="py-4">
+              <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
+                Tech Stack
+              </h2>
               <TechStack
                 items={[
-                  { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
                   { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
-                  { name: "React", logo: "https://cdn.simpleicons.org/react", url: "https://react.dev/" },
-                  { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs", url: "https://nextjs.org/", invertDark: true },
-                  { name: "Tailwind CSS", logo: "https://cdn.simpleicons.org/tailwindcss", url: "https://tailwindcss.com/" },
+                  { name: "JavaScript", logo: "https://cdn.simpleicons.org/javascript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+                  { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus", url: "https://cplusplus.com/" },
+                  { name: "Java", logo: "/icons8-java-240.svg", url: "https://www.java.com/" },
                   { name: "Django", logo: "/svg_378410.svg", url: "https://www.djangoproject.com/", invertDark: true },
-                  { name: "FastAPI", logo: "https://cdn.simpleicons.org/fastapi", url: "https://fastapi.tiangolo.com/" },
-                  { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
-                  { name: "Redis", logo: "https://cdn.simpleicons.org/redis", url: "https://redis.io/" },
-                  { name: "MongoDB", logo: "https://cdn.simpleicons.org/mongodb", url: "https://www.mongodb.com/" },
-                  { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
+                  { name: "LangChain", logo: "https://cdn.simpleicons.org/langchain", url: "https://www.langchain.com/", invertDark: true },
+                  { name: "TensorFlow", logo: "https://cdn.simpleicons.org/tensorflow", url: "https://www.tensorflow.org/" },
+                  { name: "Keras", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg", url: "https://keras.io/" },
+                  { name: "PyTorch", logo: "https://cdn.simpleicons.org/pytorch", url: "https://pytorch.org/" },
+                  { name: "OpenCV", logo: "https://cdn.simpleicons.org/opencv", url: "https://opencv.org/" },
+                  { name: "Streamlit", logo: "https://cdn.simpleicons.org/streamlit", url: "https://streamlit.io/" },
+                  { name: "Selenium", logo: "https://cdn.simpleicons.org/selenium", url: "https://www.selenium.dev/" },
+                  { name: "Playwright", logo: "/playwright-seeklogo.svg", url: "https://playwright.dev/" },
                   { name: "Git", logo: "https://cdn.simpleicons.org/git", url: "https://git-scm.com/" },
-                  { name: "AWS", logo: "/aws-svgrepo-com.svg", url: "https://aws.amazon.com/", invertDark: true },
-                  { name: "Linux", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Icons8_flat_linux.svg", url: "https://www.linux.org/" },
-                  { name: "LangChain", logo: "https://cdn.simpleicons.org/langchain", url: "https://www.langchain.com/" },
-                  { name: "OpenAI", logo: "/openai-2.svg", url: "https://openai.com/", invertDark: true },
-                  { name: "Hugging Face", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/huggingface-color.png", url: "https://huggingface.co/" },
-                  { name: "LangGraph", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/langgraph.png", url: "https://www.langchain.com/langgraph", invertDark: true },
+                  { name: "Docker", logo: "https://cdn.simpleicons.org/docker", url: "https://www.docker.com/" },
+                  { name: "FastAPI", logo: "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png", url: "https://fastapi.tiangolo.com/" },
+                  { name: "LangGraph", logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/langgraph.png", url: "https://langchain-ai.github.io/langgraph/", invertDark: true },
                 ]}
               />
             </section>
 
             {/* Projects Section */}
-            <section className="py-12">
-              <h2 className="text-3xl font-bold text-black dark:text-white mb-6">
+            <section className="py-4">
+              {/* Experience Section */}
+              <Experience />
+
+              <h2 className="text-3xl font-bold text-black dark:text-white mb-6 mt-6">
                 Projects
               </h2>
 
@@ -340,79 +250,60 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ProjectCard
                   project={{
-                    title: "AI-Powered Document Analysis System",
-                    description: "A production-grade GenAI application that analyzes complex documents using LangChain and GPT-4. Features include intelligent chunking, semantic search, and multi-document reasoning with RAG architecture.",
-                    image: "/project-document-analysis.png",
-                    tags: ["LangChain", "OpenAI", "FastAPI", "PostgreSQL", "Docker"],
-                    techStack: projectDetails["doc-analysis"].techStack,
+                    title: "Karate Kata Evaluation System",
+                    description: "A real-time AI system for karate pose detection and analysis using MoveNet and custom deep neural networks for instant feedback.",
+                    image: "/project-karate.png",
+                    tags: ["Python", "Keras", "OpenCV", "TensorFlow"],
+                    techStack: projectDetails["karate-kata"].techStack,
                     liveUrl: "https://example.com",
                     githubUrl: "https://github.com",
                     variant: "card"
                   }}
-                  onClick={() => openProjectDetail("doc-analysis")}
+                  onClick={() => openProjectDetail("karate-kata")}
                 />
                 <ProjectCard
                   project={{
-                    title: "LangGraph Multi-Agent System",
-                    description: "Built a sophisticated multi-agent system using LangGraph for automated customer support. Implements state management, conditional routing, and human-in-the-loop workflows.",
-                    image: "/project-multiagent.png",
-                    tags: ["LangGraph", "Python", "Redis", "React"],
-                    techStack: projectDetails["multiagent"].techStack,
+                    title: "Stock Price Prediction System",
+                    description: "Real-time stock price prediction web app using LSTM models for accurate 7-day forecasts.",
+                    image: "/project-stock.png",
+                    tags: ["Python", "Streamlit", "TensorFlow", "Keras"],
+                    techStack: projectDetails["stock-prediction"].techStack,
                     liveUrl: "https://example.com",
                     githubUrl: "https://github.com",
                     variant: "card"
                   }}
-                  onClick={() => openProjectDetail("multiagent")}
-                />
-                <ProjectCard
-                  project={{
-                    title: "Real-time AI Chat Platform",
-                    description: "Developed a scalable chat platform with streaming responses, conversation memory, and context-aware AI assistants. Supports multiple LLM providers with fallback mechanisms.",
-                    image: "/project-chat.png",
-                    tags: ["Next.js", "Django", "WebSocket", "Pinecone"],
-                    techStack: projectDetails["chat-platform"].techStack,
-                    liveUrl: "https://example.com",
-                    githubUrl: "https://github.com",
-                    variant: "card"
-                  }}
-                  onClick={() => openProjectDetail("chat-platform")}
-                />
-                <ProjectCard
-                  project={{
-                    title: "Intelligent Code Review Assistant",
-                    description: "An AI-powered tool that reviews pull requests, suggests improvements, and identifies potential bugs using fine-tuned models and static analysis.",
-                    image: "/project-code-review.png",
-                    tags: ["OpenAI", "GitHub API", "FastAPI", "PostgreSQL"],
-                    techStack: projectDetails["code-review"].techStack,
-                    liveUrl: "https://example.com",
-                    githubUrl: "https://github.com",
-                    variant: "card"
-                  }}
-                  onClick={() => openProjectDetail("code-review")}
-                />
-                <ProjectCard
-                  project={{
-                    title: "Semantic Search Engine for Documentation",
-                    description: "Built a vector-based search system for technical documentation with hybrid search combining keyword and semantic matching for improved accuracy.",
-                    image: "/project-search.png",
-                    tags: ["Hugging Face", "FAISS", "Django", "Elasticsearch"],
-                    techStack: projectDetails["search-engine"].techStack,
-                    liveUrl: "https://example.com",
-                    githubUrl: "https://github.com",
-                    variant: "card"
-                  }}
-                  onClick={() => openProjectDetail("search-engine")}
+                  onClick={() => openProjectDetail("stock-prediction")}
                 />
               </div>
             </section>
 
-            {/* About Section Placeholder */}
-            <section className="py-12">
+            {/* Education Section */}
+            <section className="py-2">
               <h2 className="text-3xl font-bold text-black dark:text-white mb-6">
-                About
+                Education
               </h2>
-              <div className="h-48 bg-zinc-100 dark:bg-zinc-900 rounded-xl border-2 border-zinc-200 dark:border-zinc-800 flex items-center justify-center">
-                <p className="text-zinc-500 dark:text-zinc-400">About section content</p>
+              <div className="bg-white dark:bg-zinc-900 rounded-xl border-2 border-zinc-200 dark:border-zinc-800 p-6 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+                      G H Patel College of Engineering and Technology (GCET)
+                    </h3>
+                    <p className="text-zinc-600 dark:text-zinc-400">
+                      Bachelor’s degree in Computer Engineering
+                    </p>
+                  </div>
+                  <div className="text-right mt-2 md:mt-0">
+                    <span className="block text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                      CGPA: 8.73
+                    </span>
+                    <span className="block text-sm text-zinc-500 dark:text-zinc-500">
+                      2021-2025
+                    </span>
+                  </div>
+                </div>
+                <div className="text-zinc-600 dark:text-zinc-400 text-sm">
+                  Anand, India
+                </div>
               </div>
             </section>
           </>

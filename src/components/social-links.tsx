@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Twitter, Facebook, Mail, Github } from "lucide-react";
+import { Instagram, Twitter, Facebook, Mail, Github, Linkedin } from "lucide-react";
 
 // Pinterest icon from lucide-react doesn't exist, so we'll use a custom SVG for it
 const PinterestIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -16,7 +16,7 @@ const PinterestIcon = (props: React.SVGProps<SVGSVGElement>) => (
 interface SocialLink {
   name: string;
   href: string;
-  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github";
+  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github" | "linkedin";
   ariaLabel: string;
 }
 
@@ -40,6 +40,8 @@ export function SocialLinks({ links, className = "" }: SocialLinksProps) {
         return Mail;
       case "github":
         return Github;
+      case "linkedin":
+        return Linkedin;
       default:
         return Mail;
     }
