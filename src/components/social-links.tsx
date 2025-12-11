@@ -1,8 +1,9 @@
-import React from "react";
-import { Instagram, Twitter, Facebook, Mail, Github, Linkedin } from "lucide-react";
+"use client";
 
-// Pinterest icon from lucide-react doesn't exist, so we'll use a custom SVG for it
-const PinterestIcon = (props: React.SVGProps<SVGSVGElement>) => (
+import { memo, useMemo, SVGProps } from "react";
+import { Instagram, Twitter, Facebook, Mail, Github, Linkedin, LucideIcon } from "lucide-react";
+
+const PinterestIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
@@ -25,45 +26,39 @@ interface SocialLinksProps {
   className?: string;
 }
 
-export function SocialLinks({ links, className = "" }: SocialLinksProps) {
-  const getIcon = (iconName: SocialLink["icon"]) => {
-    switch (iconName) {
-      case "instagram":
-        return Instagram;
-      case "twitter":
-        return Twitter;
-      case "pinterest":
-        return PinterestIcon;
-      case "facebook":
-        return Facebook;
-      case "mail":
-        return Mail;
-      case "github":
-        return Github;
-      case "linkedin":
-        return Linkedin;
-      default:
-        return Mail;
-    }
-  };
+const ICON_MAP: Record<SocialLink["icon"], LucideIcon | typeof PinterestIcon> = {
+  instagram: Instagram,
+  twitter: Twitter,
+  pinterest: PinterestIcon,
+  facebook: Facebook,
+  mail: Mail,
+  github: Github,
+  linkedin: Linkedin,
+} as const;
+
+export const SocialLinks = memo(function SocialLinks({ links, className = "" }: SocialLinksProps) {
+  const iconComponents = useMemo(() => {
+    return links.map((link) => ({
+      ...link,
+      IconComponent: ICON_MAP[link.icon] || Mail,
+    }));
+  }, [links]);
 
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
-      {links.map((link) => {
-        const Icon = getIcon(link.icon);
-        return (
-          <a
-            key={link.name}
-            href={link.href}
-            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-            rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-            className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-            aria-label={link.ariaLabel}
-          >
-            <Icon className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
-          </a>
-        );
-      })}
+      {iconComponents.map(({ name, href, IconComponent, ariaLabel }) => (
+        <a
+          key={name}
+          href={href}
+          target={href.startsWith("mailto:") ? undefined : "_blank"}
+          rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          aria-label={ariaLabel}
+        >
+          <IconComponent className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+        </a>
+      ))}
     </div>
   );
-}
+});
+

@@ -1,13 +1,117 @@
-import React from "react";
+"use client";
+
+import { memo } from "react";
 import { Brain, Code2, Database, Zap, Target, Wrench } from "lucide-react";
 
-export function ModelCard() {
+const CAPABILITIES_DATA = [
+    {
+        title: "LLM Application Engineering",
+        description: "LangChain, LangGraph, agent architectures, custom tools, memory systems"
+    },
+    {
+        title: "Backend Systems Development",
+        description: "Django, FastAPI, microservices, event-driven systems"
+    },
+    {
+        title: "Data Processing & Pipelines",
+        description: "ETL systems, embeddings, vector stores, retrieval pipelines"
+    },
+    {
+        title: "Real-Time Intelligence",
+        description: "WebSockets, async systems, live state updates"
+    },
+    {
+        title: "AI-Driven Automation",
+        description: "workflow optimization, intelligent assistants, business automation"
+    },
+] as const;
+
+const STRENGTHS_DATA = [
+    "Production-grade engineering mindset",
+    "Ability to design scalable GenAI architectures",
+    "Strong debugging and problem-solving intuition",
+    "Converts ambiguous ideas into structured, actionable systems",
+    "Rapid prototype → deploy cycle",
+] as const;
+
+const TECH_STACK_DATA = [
+    { category: "Backend", tech: "Python, Django, FastAPI" },
+    { category: "GenAI", tech: "LangChain, LangGraph, OpenAI/DeepSeek APIs" },
+    { category: "Infra", tech: "Docker, Linux, Redis, Postgres" },
+    { category: "Frontend", tech: "Next.js, Tailwind, ShadCN" },
+] as const;
+
+const PERFORMANCE_DATA = [
+    "Robust system design under ambiguity",
+    "Efficient async workflows (high throughput)",
+    "LLM agent orchestration with deterministic flows",
+    "Enterprise-ready scalability",
+] as const;
+
+const USE_CASES = [
+    "AI automation",
+    "LLM-powered applications",
+    "Knowledge agents",
+    "Conversation intelligence",
+    "Inspection/Operations automation",
+] as const;
+
+const CapabilityItem = memo(function CapabilityItem({
+    title,
+    description
+}: {
+    title: string;
+    description: string;
+}) {
+    return (
+        <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-3">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
+                {title}
+            </h3>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                {description}
+            </p>
+        </div>
+    );
+});
+
+const StrengthItem = memo(function StrengthItem({ text }: { text: string }) {
+    return (
+        <li className="flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300">
+            <span className="text-zinc-400 dark:text-zinc-600 mt-1" aria-hidden="true">▸</span>
+            <span>{text}</span>
+        </li>
+    );
+});
+
+const TechRow = memo(function TechRow({ category, tech }: { category: string; tech: string }) {
+    return (
+        <tr>
+            <td className="py-2 px-3 font-medium text-zinc-900 dark:text-zinc-50">
+                {category}
+            </td>
+            <td className="py-2 px-3 text-zinc-700 dark:text-zinc-300 font-mono text-xs">
+                {tech}
+            </td>
+        </tr>
+    );
+});
+
+const UseCaseBadge = memo(function UseCaseBadge({ text }: { text: string }) {
+    return (
+        <span className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs rounded-md border border-zinc-200 dark:border-zinc-700">
+            {text}
+        </span>
+    );
+});
+
+export const ModelCard = memo(function ModelCard() {
     return (
         <div className="w-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-xl p-8 shadow-lg">
             {/* Header */}
             <div className="mb-6">
                 <div className="flex items-center gap-3 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
                     <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
                         SHYAM-DEV-1
                     </h1>
@@ -23,7 +127,7 @@ export function ModelCard() {
             {/* Model Overview */}
             <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                    <Brain className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Brain className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Model Overview
                     </h2>
@@ -38,56 +142,41 @@ export function ModelCard() {
             {/* Core Capabilities */}
             <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                    <Code2 className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Code2 className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Core Capabilities
                     </h2>
                 </div>
                 <div className="space-y-3">
-                    <CapabilityItem
-                        title="LLM Application Engineering"
-                        description="LangChain, LangGraph, agent architectures, custom tools, memory systems"
-                    />
-                    <CapabilityItem
-                        title="Backend Systems Development"
-                        description="Django, FastAPI, microservices, event-driven systems"
-                    />
-                    <CapabilityItem
-                        title="Data Processing & Pipelines"
-                        description="ETL systems, embeddings, vector stores, retrieval pipelines"
-                    />
-                    <CapabilityItem
-                        title="Real-Time Intelligence"
-                        description="WebSockets, async systems, live state updates"
-                    />
-                    <CapabilityItem
-                        title="AI-Driven Automation"
-                        description="workflow optimization, intelligent assistants, business automation"
-                    />
+                    {CAPABILITIES_DATA.map((capability) => (
+                        <CapabilityItem
+                            key={capability.title}
+                            title={capability.title}
+                            description={capability.description}
+                        />
+                    ))}
                 </div>
             </section>
 
             {/* Key Strengths */}
             <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                    <Target className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Target className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Key Strengths
                     </h2>
                 </div>
                 <ul className="space-y-2">
-                    <StrengthItem text="Production-grade engineering mindset" />
-                    <StrengthItem text="Ability to design scalable GenAI architectures" />
-                    <StrengthItem text="Strong debugging and problem-solving intuition" />
-                    <StrengthItem text="Converts ambiguous ideas into structured, actionable systems" />
-                    <StrengthItem text="Rapid prototype → deploy cycle" />
+                    {STRENGTHS_DATA.map((strength) => (
+                        <StrengthItem key={strength} text={strength} />
+                    ))}
                 </ul>
             </section>
 
             {/* Tech Stack */}
             <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                    <Wrench className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Wrench className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Tech Stack Version
                     </h2>
@@ -105,10 +194,9 @@ export function ModelCard() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                            <TechRow category="Backend" tech="Python, Django, FastAPI" />
-                            <TechRow category="GenAI" tech="LangChain, LangGraph, OpenAI/DeepSeek APIs" />
-                            <TechRow category="Infra" tech="Docker, Linux, Redis, Postgres" />
-                            <TechRow category="Frontend" tech="Next.js, Tailwind, ShadCN" />
+                            {TECH_STACK_DATA.map((row) => (
+                                <TechRow key={row.category} category={row.category} tech={row.tech} />
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -117,23 +205,22 @@ export function ModelCard() {
             {/* Performance Highlights */}
             <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                    <Zap className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Zap className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Performance Highlights
                     </h2>
                 </div>
                 <ul className="space-y-2">
-                    <StrengthItem text="Robust system design under ambiguity" />
-                    <StrengthItem text="Efficient async workflows (high throughput)" />
-                    <StrengthItem text="LLM agent orchestration with deterministic flows" />
-                    <StrengthItem text="Enterprise-ready scalability" />
+                    {PERFORMANCE_DATA.map((item) => (
+                        <StrengthItem key={item} text={item} />
+                    ))}
                 </ul>
             </section>
 
             {/* Intended Use */}
             <section>
                 <div className="flex items-center gap-2 mb-3">
-                    <Database className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+                    <Database className="w-4 h-4 text-zinc-700 dark:text-zinc-300" aria-hidden="true" />
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wide">
                         Intended Use
                     </h2>
@@ -142,57 +229,12 @@ export function ModelCard() {
                     For organizations seeking:
                 </p>
                 <div className="flex flex-wrap gap-2">
-                    <UseCaseBadge text="AI automation" />
-                    <UseCaseBadge text="LLM-powered applications" />
-                    <UseCaseBadge text="Knowledge agents" />
-                    <UseCaseBadge text="Conversation intelligence" />
-                    <UseCaseBadge text="Inspection/Operations automation" />
+                    {USE_CASES.map((useCase) => (
+                        <UseCaseBadge key={useCase} text={useCase} />
+                    ))}
                 </div>
             </section>
         </div>
     );
-}
+});
 
-// Helper Components
-function CapabilityItem({ title, description }: { title: string; description: string }) {
-    return (
-        <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-3">
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 mb-1">
-                {title}
-            </h3>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400">
-                {description}
-            </p>
-        </div>
-    );
-}
-
-function StrengthItem({ text }: { text: string }) {
-    return (
-        <li className="flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300">
-            <span className="text-zinc-400 dark:text-zinc-600 mt-1">▸</span>
-            <span>{text}</span>
-        </li>
-    );
-}
-
-function TechRow({ category, tech }: { category: string; tech: string }) {
-    return (
-        <tr>
-            <td className="py-2 px-3 font-medium text-zinc-900 dark:text-zinc-50">
-                {category}
-            </td>
-            <td className="py-2 px-3 text-zinc-700 dark:text-zinc-300 font-mono text-xs">
-                {tech}
-            </td>
-        </tr>
-    );
-}
-
-function UseCaseBadge({ text }: { text: string }) {
-    return (
-        <span className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs rounded-md border border-zinc-200 dark:border-zinc-700">
-            {text}
-        </span>
-    );
-}

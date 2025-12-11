@@ -1,49 +1,43 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
-    const { theme, setTheme } = useTheme()
-    const [mounted, setMounted] = React.useState(false)
-    const buttonRef = React.useRef<HTMLButtonElement>(null)
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
-    // Avoid hydration mismatch
-    React.useEffect(() => {
-        setMounted(true)
-    }, [])
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-    const handleToggle = async () => {
-        if (!buttonRef.current) return
+    const handleToggle = useCallback(async () => {
+        if (!buttonRef.current) return;
 
-        const newTheme = theme === "dark" ? "light" : "dark"
+        const newTheme = theme === "dark" ? "light" : "dark";
 
-        // Get button position for animation origin
-        const rect = buttonRef.current.getBoundingClientRect()
-        const x = rect.left + rect.width / 2
-        const y = rect.top + rect.height / 2
+        const rect = buttonRef.current.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
 
-        // Calculate the radius needed to cover the entire viewport
         const endRadius = Math.hypot(
             Math.max(x, window.innerWidth - x),
             Math.max(y, window.innerHeight - y)
-        )
+        );
 
-        // Check if View Transitions API is supported
         if (!document.startViewTransition) {
-            setTheme(newTheme)
-            return
+            setTheme(newTheme);
+            return;
         }
 
-        // Start view transition with circular reveal
         const transition = document.startViewTransition(() => {
-            setTheme(newTheme)
-        })
+            setTheme(newTheme);
+        });
 
-        await transition.ready
+        await transition.ready;
 
-        // Animate the circular reveal
         document.documentElement.animate(
             {
                 clipPath: [
@@ -56,18 +50,19 @@ export function ThemeToggle() {
                 easing: "ease-in-out",
                 pseudoElement: "::view-transition-new(root)",
             }
-        )
-    }
+        );
+    }, [theme, setTheme]);
 
     if (!mounted) {
         return (
             <button
                 className="p-3 rounded-xl bg-zinc-200 dark:bg-zinc-800 transition-all duration-300"
                 aria-label="Toggle theme"
+                disabled
             >
                 <Sun className="h-5 w-5 text-zinc-900 dark:text-zinc-100" />
             </button>
-        )
+        );
     }
 
     return (
@@ -75,13 +70,14 @@ export function ThemeToggle() {
             ref={buttonRef}
             onClick={handleToggle}
             className="p-3 rounded-xl bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-all duration-300 shadow-lg hover:shadow-inner"
-            aria-label="Toggle theme"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
         >
             {theme === "dark" ? (
-                <Sun className="h-5 w-5 text-zinc-100 transition-transform duration-300 rotate-0 hover:rotate-90" />
+                <Sun className="h-5 w-5 text-zinc-100 transition-transform duration-300 rotate-0 hover:rotate-90" aria-hidden="true" />
             ) : (
-                <Moon className="h-5 w-5 text-zinc-900 transition-transform duration-300 rotate-0 hover:-rotate-12" />
+                <Moon className="h-5 w-5 text-zinc-900 transition-transform duration-300 rotate-0 hover:-rotate-12" aria-hidden="true" />
             )}
         </button>
-    )
+    );
 }
+
