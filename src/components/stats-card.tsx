@@ -50,7 +50,7 @@ export const StatsCard = memo(function StatsCard({ onClick }: StatsCardProps) {
                 <StatItem
                     icon={<Briefcase className="w-4 h-4" aria-hidden="true" />}
                     label="Experience"
-                    value="2+ Years"
+                    value="1.5 Years"
                 />
                 <StatItem
                     icon={<Code className="w-4 h-4" aria-hidden="true" />}
