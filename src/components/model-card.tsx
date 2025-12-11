@@ -107,7 +107,7 @@ const UseCaseBadge = memo(function UseCaseBadge({ text }: { text: string }) {
 
 export const ModelCard = memo(function ModelCard() {
     return (
-        <div className="w-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-xl p-8 shadow-lg">
+        <div className="w-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 rounded-xl p-8 shadow-sm">
             {/* Header */}
             <div className="mb-6">
                 <div className="flex items-center gap-3 mb-2">
