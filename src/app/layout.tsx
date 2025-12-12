@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Sora, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ChatWidget } from "@/components/chat-widget";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>
