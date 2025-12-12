@@ -2,6 +2,8 @@
 
 import { type ChatMessage, MessageStatus } from '@/lib/chat-types';
 import { CheckCircle2, Circle, XCircle, User, Bot } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ChatMessageProps {
     message: ChatMessage;
@@ -25,7 +27,7 @@ export function ChatMessageComponent({ message }: ChatMessageProps) {
             </div>
 
             {/* Message Content */}
-            <div className={`flex-1 ${isUser ? 'flex flex-col items-end' : 'flex flex-col items-start'} max-w-[75%]`}>
+            <div className={`flex-1 ${isUser ? 'flex flex-col items-end' : 'flex flex-col items-start'} max-w-[85%]`}>
                 {/* User Message - Show Query */}
                 {isUser && message.query && (
                     <>
@@ -62,10 +64,53 @@ export function ChatMessageComponent({ message }: ChatMessageProps) {
                 {/* Bot Message - Show Only Response */}
                 {!isUser && message.response && (
                     <>
-                        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-zinc-100 dark:bg-zinc-800/50 text-foreground shadow-sm border border-zinc-200 dark:border-zinc-800">
-                            <p className="text-[13px] leading-relaxed whitespace-pre-wrap break-words">
-                                {message.response}
-                            </p>
+                        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-zinc-100 dark:bg-zinc-800/50 text-foreground shadow-sm border border-zinc-200 dark:border-zinc-800 w-full overflow-hidden">
+                            <div className="text-[13px] leading-relaxed break-words prose dark:prose-invert max-w-none prose-p:leading-relaxed prose-pre:p-0 prose-pre:bg-transparent">
+                                <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
+                                    components={{
+                                        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                        ul: ({ children }) => <ul className="list-disc ml-4 mb-2 space-y-1">{children}</ul>,
+                                        ol: ({ children }) => <ol className="list-decimal ml-4 mb-2 space-y-1">{children}</ol>,
+                                        li: ({ children }) => <li className="pl-1">{children}</li>,
+                                        h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-4">{children}</h1>,
+                                        h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-3">{children}</h2>,
+                                        h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-2">{children}</h3>,
+                                        code: ({ className, children, ...props }) => {
+                                            const match = /language-(\w+)/.exec(className || '');
+                                            const isInline = !match && !className;
+                                            return isInline ? (
+                                                <code className="bg-zinc-200 dark:bg-zinc-700 px-1 py-0.5 rounded text-xs font-mono" {...props}>
+                                                    {children}
+                                                </code>
+                                            ) : (
+                                                <div className="relative group my-2">
+                                                    <div className="absolute -top-3 right-2 text-[10px] text-zinc-500 font-mono uppercase select-none">
+                                                        {match?.[1] || 'text'}
+                                                    </div>
+                                                    <pre className="bg-zinc-900 dark:bg-zinc-950 text-zinc-100 p-3 rounded-lg overflow-x-auto text-xs font-mono border border-zinc-800">
+                                                        <code className={className} {...props}>
+                                                            {children}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            );
+                                        },
+                                        blockquote: ({ children }) => (
+                                            <blockquote className="border-l-2 border-zinc-300 dark:border-zinc-600 pl-3 italic my-2 text-muted-foreground">
+                                                {children}
+                                            </blockquote>
+                                        ),
+                                        a: ({ href, children }) => (
+                                            <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                                                {children}
+                                            </a>
+                                        ),
+                                    }}
+                                >
+                                    {message.response}
+                                </ReactMarkdown>
+                            </div>
                         </div>
 
                         {/* Timestamp for AI messages */}
