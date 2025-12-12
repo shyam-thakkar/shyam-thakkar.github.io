@@ -1,6 +1,6 @@
 export const CHAT_CONFIG = {
     // WebSocket URL for real-time chat
-    WS_URL: 'wss://prisoners-emails-spare-joined.trycloudflare.com /ws/chat/',
+    WS_URL: 'wss://prisoners-emails-spare-joined.trycloudflare.com/ws/chat/',
 
     // REST API endpoints
     CHAT_HISTORY_URL: 'https://34.180.48.177.sslip.io/chat/history/',
