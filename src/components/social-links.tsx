@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useMemo, SVGProps } from "react";
-import { Instagram, Twitter, Facebook, Mail, Github, Linkedin, LucideIcon } from "lucide-react";
+import { Instagram, Twitter, Facebook, Mail, Github, Linkedin, LucideIcon, FileText } from "lucide-react";
 
 const PinterestIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -17,13 +17,14 @@ const PinterestIcon = (props: SVGProps<SVGSVGElement>) => (
 interface SocialLink {
   name: string;
   href: string;
-  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github" | "linkedin";
+  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github" | "linkedin" | "resume";
   ariaLabel: string;
 }
 
 interface SocialLinksProps {
   links: SocialLink[];
   className?: string;
+  showLabel?: boolean;
 }
 
 const ICON_MAP: Record<SocialLink["icon"], LucideIcon | typeof PinterestIcon> = {
@@ -34,9 +35,10 @@ const ICON_MAP: Record<SocialLink["icon"], LucideIcon | typeof PinterestIcon> = 
   mail: Mail,
   github: Github,
   linkedin: Linkedin,
+  resume: FileText,
 } as const;
 
-export const SocialLinks = memo(function SocialLinks({ links, className = "" }: SocialLinksProps) {
+export const SocialLinks = memo(function SocialLinks({ links, className = "", showLabel = false }: SocialLinksProps) {
   const iconComponents = useMemo(() => {
     return links.map((link) => ({
       ...link,
@@ -45,17 +47,32 @@ export const SocialLinks = memo(function SocialLinks({ links, className = "" }: 
   }, [links]);
 
   return (
-    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
+    <div className={`flex flex-wrap items-center justify-center gap-4 ${className}`}>
       {iconComponents.map(({ name, href, IconComponent, ariaLabel }) => (
         <a
           key={name}
           href={href}
           target={href.startsWith("mailto:") ? undefined : "_blank"}
           rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-          className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          className={`group relative flex items-center gap-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-300 hover:scale-105 hover:border-zinc-300 dark:hover:border-zinc-600 ${
+            showLabel ? "px-3 py-1.5" : "p-2 hover:scale-110"
+          }`}
           aria-label={ariaLabel}
         >
-          <IconComponent className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+          <IconComponent className="w-5 h-5 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors" />
+
+          {showLabel ? (
+            <span className="font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
+              {name}
+            </span>
+          ) : (
+            /* Tooltip - Only show when label is hidden */
+            <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+              {name}
+              {/* Arrow */}
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100" />
+            </span>
+          )}
         </a>
       ))}
     </div>
