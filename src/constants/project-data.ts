@@ -1,6 +1,40 @@
 import { ProjectDetailData } from "@/components/project-detail";
 
 export const PROJECT_DETAILS: Record<string, ProjectDetailData> = {
+    "aifolio": {
+        title: "AIFolio — AI-Powered Portfolio Platform",
+        description: "A SaaS platform that transforms resumes into structured, versioned, and publishable personal websites with AI-powered rewriting and a portfolio-aware conversational assistant.",
+        longDescription: "AIFolio is an AI-powered portfolio builder and publishing platform that converts a user's resume into a structured, editable portfolio and publishes it as a live personal website on a unique subdomain (e.g., username.aifolio.in). Built with strong draft–publish separation, versioned publishing, and safe AI augmentation—ensuring users retain full control over what is publicly visible. Features include LLM-driven resume structuring, section-aware AI rewriting, and a metadata-scoped RAG chatbot grounded strictly in published data.",
+        image: "/project-aifolio.png",
+        tags: ["Next.js", "Django", "PostgreSQL", "LLM", "RAG", "Cloudflare"],
+        techStack: [
+            { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs", url: "https://nextjs.org/", invertDark: true },
+            { name: "Django", logo: "/django-icon-svgrepo-com.svg", url: "https://www.djangoproject.com/" },
+            { name: "PostgreSQL", logo: "https://cdn.simpleicons.org/postgresql", url: "https://www.postgresql.org/" },
+            { name: "Python", logo: "https://cdn.simpleicons.org/python", url: "https://www.python.org/" },
+            { name: "OpenAI", logo: "/openai-2.svg", url: "https://openai.com/", invertDark: true },
+            { name: "Cloudflare", logo: "https://cdn.simpleicons.org/cloudflare", url: "https://www.cloudflare.com/" },
+        ],
+        liveUrl: "https://aifolio.in",
+        date: "2025",
+        team: "Solo Project",
+        features: [
+            "Resume-to-portfolio conversion via LLM structuring",
+            "Draft vs. live content isolation with atomic publishing",
+            "Versioned publishing with rollback semantics",
+            "Section-aware AI rewriting for content enhancement",
+            "Multi-tenant RAG chatbot with metadata-scoped retrieval",
+            "Subdomain-based routing (username.aifolio.in)",
+            "Wildcard SSL via Cloudflare + Nginx reverse proxy"
+        ],
+        challenges: [
+            "Ensuring multi-tenant data isolation in vector database",
+            "Preventing AI hallucination with grounded RAG responses",
+            "Implementing atomic publish/unpublish without partial states",
+            "Building subdomain-based SaaS infrastructure with wildcard DNS",
+            "Designing safe, explainable AI that never overrides user intent"
+        ]
+    },
     "karate-kata": {
         title: "Karate Kata Evaluation System",
         description: "A real-time AI system for karate pose detection and analysis using MoveNet and custom deep neural networks.",

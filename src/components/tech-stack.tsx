@@ -31,7 +31,7 @@ export function TechStack({ items, className = "", maxCols = 16 }: TechStackProp
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative flex items-center justify-center p-0.5 rounded-lg transition-all duration-300 aspect-square isolate"
+                        className="group/tech relative flex items-center justify-center p-0.5 rounded-lg transition-all duration-300 aspect-square isolate"
                         aria-label={item.name}
                     >
                         {/* Logo */}
@@ -47,7 +47,7 @@ export function TechStack({ items, className = "", maxCols = 16 }: TechStackProp
                         </div>
 
                         {/* Tooltip - shows above icon on hover */}
-                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none whitespace-nowrap z-50 bg-zinc-700 text-white">
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs font-medium rounded opacity-0 invisible group-hover/tech:opacity-100 group-hover/tech:visible transition-all duration-200 pointer-events-none whitespace-nowrap z-50 bg-zinc-700 text-white">
                             {item.name}
                             {/* Arrow pointing down */}
                             <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-zinc-700"></div>

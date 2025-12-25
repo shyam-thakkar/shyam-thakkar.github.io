@@ -154,6 +154,24 @@ export default function Home() {
               <Experience />
 
               <h2 className="text-3xl font-bold text-black dark:text-white mb-6 mt-6">
+                Featured Product
+              </h2>
+              <ProjectCard
+                project={{
+                  title: projectDetails["aifolio"].title,
+                  description: projectDetails["aifolio"].description,
+                  image: projectDetails["aifolio"].image,
+                  tags: projectDetails["aifolio"].tags,
+                  techStack: projectDetails["aifolio"].techStack,
+                  liveUrl: projectDetails["aifolio"].liveUrl,
+                  githubUrl: projectDetails["aifolio"].githubUrl,
+                  variant: "featured",
+                  badgeLabel: "🚀 LIVE PRODUCT"
+                }}
+                onClick={() => openProjectDetail("aifolio")}
+              />
+
+              <h2 className="text-3xl font-bold text-black dark:text-white mb-6 mt-8">
                 Projects
               </h2>
 

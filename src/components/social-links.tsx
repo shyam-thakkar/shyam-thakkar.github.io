@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useMemo, SVGProps } from "react";
-import { Instagram, Twitter, Facebook, Mail, Github, Linkedin, LucideIcon, FileText } from "lucide-react";
+import { Instagram, Twitter, Facebook, Mail, Github, Linkedin, LucideIcon, FileText, ExternalLink } from "lucide-react";
 
 const PinterestIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -17,7 +17,7 @@ const PinterestIcon = (props: SVGProps<SVGSVGElement>) => (
 interface SocialLink {
   name: string;
   href: string;
-  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github" | "linkedin" | "resume";
+  icon: "instagram" | "twitter" | "pinterest" | "facebook" | "mail" | "github" | "linkedin" | "resume" | "external";
   ariaLabel: string;
 }
 
@@ -36,6 +36,7 @@ const ICON_MAP: Record<SocialLink["icon"], LucideIcon | typeof PinterestIcon> = 
   github: Github,
   linkedin: Linkedin,
   resume: FileText,
+  external: ExternalLink,
 } as const;
 
 export const SocialLinks = memo(function SocialLinks({ links, className = "", showLabel = false }: SocialLinksProps) {

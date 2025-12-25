@@ -1,10 +1,11 @@
 export const PERSONAL_INFO = {
     name: "SHYAM THAKKAR",
-    title: "Gen AI Developer",
+    title: "Gen AI Developer & Product Builder",
     greeting: "Hey! I'm Shyam Thakkar",
-    typingText: "A GenAI Developer",
+    typingText: "Building AI Products",
     profileImage: "/profile.png",
-    description: "I have been specializing in building intelligent, production-grade applications using",
-    descriptionContinued: "for backend. I have been specializing in building Gen AI apps with",
-    descriptionEnd: ", creating intelligent solutions powered by AI.",
+    description: "Creator of AIFolio.in — I build production-grade AI products using",
+    descriptionContinued: "for backend. I specialize in Gen AI applications with",
+    descriptionEnd: ", creating intelligent SaaS solutions powered by AI.",
 } as const;
+

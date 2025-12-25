@@ -14,6 +14,7 @@ export interface ProjectData {
     liveUrl?: string;
     githubUrl?: string;
     variant?: "card" | "minimal" | "featured";
+    badgeLabel?: string;
 }
 
 interface ProjectCardProps {
@@ -175,7 +176,14 @@ export const ProjectCard = memo(function ProjectCard({ project, onClick }: Proje
 
     if (variant === "featured") {
         return (
-            <div className={STYLES.featured.container}>
+            <div
+                className={`${STYLES.featured.container} cursor-pointer`}
+                onClick={onClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
+                aria-label={`View details for ${project.title}`}
+            >
                 <div className="flex flex-col md:flex-row">
                     {project.image && (
                         <div className={STYLES.featured.image}>
@@ -183,7 +191,7 @@ export const ProjectCard = memo(function ProjectCard({ project, onClick }: Proje
                                 src={project.image}
                                 alt={project.title}
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                className="object-cover transition-transform duration-500"
                                 loading="lazy"
                             />
                         </div>
@@ -191,7 +199,7 @@ export const ProjectCard = memo(function ProjectCard({ project, onClick }: Proje
 
                     <div className={STYLES.featured.content}>
                         <div className={STYLES.featured.badge}>
-                            FEATURED
+                            {project.badgeLabel || "FEATURED"}
                         </div>
                         <h3 className={STYLES.featured.title}>
                             {project.title}
@@ -200,16 +208,11 @@ export const ProjectCard = memo(function ProjectCard({ project, onClick }: Proje
                             {project.description}
                         </p>
 
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {project.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className={STYLES.featured.tag}
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
+                        {project.techStack && project.techStack.length > 0 && (
+                            <div className="mb-6">
+                                <TechStack items={project.techStack} maxCols={8} />
+                            </div>
+                        )}
 
                         <div className="flex gap-4">
                             {project.liveUrl && (
